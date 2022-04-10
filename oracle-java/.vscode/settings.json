@@ -1,0 +1,6 @@
+{
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "c:\\Code\\MyJava\\OracleJDBC\\ojdbc\\ojdbc8.jar"
+  ]
+}
