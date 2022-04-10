@@ -22,6 +22,14 @@ with ojdbc8.jar
 
 ![](image/README/oracle_java.png)
 
+### Connect Oracle XE 21c with NodeJS
+
+![](image/README/oracle_nodejs.png)
+
 ### Connect Oracle XE 21c with Python
 
-### Connect Oracle XE 21c with NodeJS
+![](image/README/oracle_python.png)
+
+### Connect Oracle XE 21c with Scala
+
+???
