@@ -30,6 +30,10 @@ with ojdbc8.jar
 
 ![](image/README/oracle_python.png)
 
+### Connect Oracle XE 21c with C#
+
+![](image/README/oracle_csharp.png)
+
 ### Connect Oracle XE 21c with Scala
 
 ???
