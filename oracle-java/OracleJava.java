@@ -1,5 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /*
@@ -14,6 +16,12 @@ public class OracleJava {
                 System.out.println("Connected to the Oracle!");
             } else {
                 System.out.println("Failed to connect Oracle!");
+            }
+
+            PreparedStatement stmt = conn.prepareStatement("SELECT 'Hello World!' FROM dual");
+            ResultSet rslt = stmt.executeQuery();
+            while (rslt.next()) {
+                System.out.println(rslt.getString(1));
             }
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
