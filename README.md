@@ -6,6 +6,14 @@ Oracle is still used in lots of places.
 
 How to make it work well with Cloud is a common question.
 
+## Oracle Wallet
+
+![](image/README/1649686716595.png)
+
+![](image/README/1649686802558.png)
+
+![](image/README/1649686858634.png)
+
 ## Oracle XE 21c
 
 https://www.oracle.com/il-en/database/technologies/appdev/xe/quickstart.html
