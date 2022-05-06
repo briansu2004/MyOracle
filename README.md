@@ -136,15 +136,110 @@ orapki wallet display -wallet $WALLET -pwd $PWD
 
 ![](image/README/oracle_tls_01.png)
 
-6. x
+6. Enable SSL/TLS on server side
 
-7. x
+- adding these to sqlnet.ora on server side
 
-8. x
+```
+WALLET_LOCATION =
+    (SOURCE=
+        (METHOD = FILE)
+        (METHOD_DATA =
+            (DIRECTORY = /u01/app/oracle/wallet)
+        )
+    )
+```
 
-9. x
+- adding these to listener.ora
 
-10. x
+```
+LISTENER =
+    (DESCRIPTION_LIST =
+        (DESCRIPTION =
+            (ADDRESS = (PROTOCOL = TCP)(HOST = rhel8a)(PORT = 1521))
+            (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))
+            (ADDRESS = (PROTOCOL = TCPS)(HOST = rhel8a)(PORT = 2484))
+        )
+    )
+
+...
+
+WALLET_LOCATION =
+    (SOURCE=
+        (METHOD = FILE)
+        (METHOD_DATA =
+            (DIRECTORY = /u01/app/oracle/wallet)
+        )
+    )
+```
+
+- restart the listener
+
+```
+lsnrctl stop
+lsnrctl start
+```
+
+- test the connections
+
+```
+netstat -tlpn | more
+netstat -a | grep 1521
+netstat -a | grep 2484
+```
+
+7. Enable SSL/TLS on client side
+
+- adding these to sqlnet.ora on client side
+
+```
+WALLET_LOCATION =
+    (SOURCE=
+        (METHOD = FILE)
+        (METHOD_DATA =
+            (DIRECTORY = c:\app\client\wallet)
+        )
+    )
+```
+
+- adding these to listener.ora
+
+```
+CDB=
+    (DESCRIPTION =
+        (ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=rhel8a)(PORT=1521)))
+        (CONNECT_DATA=(SERVICE_NAME=CDB))
+    )
+
+CDB_SSL=
+    (DESCRIPTION =
+        (ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCPS)(HOST=rhel8a)(PORT=2484)))
+        (CONNECT_DATA=(SERVICE_NAME=CDB))
+    )
+```
+
+- test SSL connection
+
+```
+sqlplus system/oracle@cdb_ssl
+sqlplus sys/oracle@cdb_ssl as sysdba
+```
+
+8. Disable non-SSL connection
+
+- Remove/comment this entry in listener.ora on server side
+
+```
+            (ADDRESS = (PROTOCOL = TCP)(HOST = rhel8a)(PORT = 1521))
+```
+
+- test the connections
+
+```
+netstat -tlpn | more
+netstat -a | grep 1521
+netstat -a | grep 2484
+```
 
 ## Oracle Wallet
 
