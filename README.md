@@ -8,6 +8,8 @@ How to make it work well with Cloud is a common question.
 
 ## Oracle TLS
 
+### The old way - mTLS - 2-way - Cert + ACL + Wallet
+
 Adding SSL/TLS to Oracle 21c
 
 Before:
@@ -241,7 +243,13 @@ netstat -a | grep 1521
 netstat -a | grep 2484
 ```
 
-## Oracle Wallet
+### The new way - 1-way TLS
+
+No cert / wallet on client needed.
+
+Only the connection string of the server is required.
+
+### Oracle Wallet
 
 ![](image/README/oracle_wallet_01.png)
 
